@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import Aux from '../HOC/auxilaryilary';
+import Aux from '../HOC/auxilary';
 import {ReactComponent as Logo} from '../Assets/Logo.svg';
 import NavDropdown from './NavDropdown';
 import './Navigator.css';
