@@ -1,0 +1,8 @@
+.page .tab {
+    background-color:#FDFDFD;
+    border-bottom: 1px solid;
+}
+.page .tab button{
+    color:black;
+    font-size:15px;
+}

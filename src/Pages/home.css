@@ -1,0 +1,6 @@
+.page {
+    position:relative;
+}
+.page .tab {
+    left:500px;
+}
