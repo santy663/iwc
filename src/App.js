@@ -4,7 +4,7 @@ import Navigator from './components/Navigator';
 import Home from './Pages/Home';
 import Pcards from './Pages/personalBanking/cards/cards';
 import Paccounts from './Pages/personalBanking/personal';
-import {Widget, addResponseMessage, addUserMessage} from 'react-chat-widget'
+import {Widget, addResponseMessage} from 'react-chat-widget'
 import API from './Assets/Axios/api'
 import './App.css';
 import 'react-chat-widget/lib/styles.css';
@@ -28,7 +28,12 @@ class App extends Component{
     console.log(`New message incoming! ${newMessage}`);
     API.post('/dialogs/'+this.state.chatId,{input: newMessage})
     .then(res => {
-      addResponseMessage(res.data.prompt);
+      console.log(res.data)
+      if(res.data.response) {
+        res.data.response.map((prompt) => {
+          addResponseMessage(prompt)
+        });
+      }
     })
   }
   render() {
