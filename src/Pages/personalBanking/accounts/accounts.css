@@ -1,0 +1,38 @@
+.listofAccounts {
+    text-align: left;
+    padding:0;
+}
+.Accounts {
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-bottom-color: rgb(204, 204, 204);
+    border-right: 1px solid #ccc;
+    border-right-color: rgb(204, 204, 204);
+    padding: 11px 16px 12px 22px;
+    cursor: pointer;
+    background-color: #f4f4f4;
+    font-weight: bold;
+    width: 200px;
+    height:100%;
+}
+.detailsSenior {
+    position: absolute;
+    left: 239px;
+    top: 26px;
+}
+.seniorForm input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.seniorForm {
+    text-align: left;
+}
+.benifitsSenior {
+    text-align: left;
+    width:100%;
+}

@@ -43,7 +43,7 @@ class App extends Component{
           await this.timeout(3000);
           document.getElementById("pad").click()
           await this.timeout(3000);
-          document.getElementById("Accounts").click()          
+          document.getElementById("senior").click()          
         }
       }
  

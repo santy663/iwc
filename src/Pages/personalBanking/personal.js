@@ -1,18 +1,20 @@
 import React from 'react';
 import './personal.css';
 import {withRouter, Link, Route} from 'react-router-dom'
-import Paccountsdetails from './accounts/accounts'
+import Paccountscreation from './accounts/accounts'
 import Paccountssenior from './accounts/senior'
+import Paccountsdetails from './accounts/details'
 const Paccounts =(props) => {
     console.log(props)
     return (
     <div className='page'>
         <div className ='tab'>
             <li className="tabLinks" key = "1Accountpersonal" ><Link to={"/personal/Accounts/pad"} id="pad">Accounts</Link></li>            
-            <li className="tabLinks" key = "1AccountDeposit" >Deposits</li>     
+            <li className="tabLinks" key = "1AccountDeposit" ><Link to={"/personal/Accounts/details"} id="accdetails">Details</Link></li>     
             
         </div>
-        <Route path="/personal/Accounts/pad" component={Paccountsdetails} />
+        <Route path="/personal/Accounts/pad" component={Paccountscreation} />
+        <Route path="/personal/Accounts/details" component={Paccountsdetails} />
         <Route path="/personal/Accounts/senior" component={Paccountssenior} />
     </div> )
 }
