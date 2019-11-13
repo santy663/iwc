@@ -14,7 +14,7 @@ class Navigator extends Component {
     render(){
     return (<Aux ClassName ='tab'>
         <Logo className='Logo'/>
-        <button className='tabLinks' onClick={()=>this.setState({personal : !this.state.personal})}>Personal Banking</button>
+        <button className='tabLinks' id="personalBanking"onClick={()=>this.setState({personal : !this.state.personal})}>Personal Banking</button>
         { this.state.personal ? 
                         <NavDropdown className = 'dropdown-personal' 
                         subpath='personal'

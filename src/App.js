@@ -4,8 +4,8 @@ import Navigator from './components/Navigator';
 import Home from './Pages/Home';
 import Pcards from './Pages/personalBanking/cards/cards';
 import Paccounts from './Pages/personalBanking/personal';
-import {Widget, addResponseMessage} from 'react-chat-widget'
-import API from './Assets/Axios/api'
+import {Widget, addResponseMessage} from 'react-chat-widget';
+import API from './Assets/Axios/api';
 import './App.css';
 import 'react-chat-widget/lib/styles.css';
 class App extends Component{
@@ -24,17 +24,29 @@ class App extends Component{
       toggler()
     }    
   }
-  handleNewUserMessage = (newMessage) => {
+  timeout = (ms) =>{
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  handleNewUserMessage = async(newMessage) => {
     console.log(`New message incoming! ${newMessage}`);
-    API.post('/dialogs/'+this.state.chatId,{input: newMessage})
-    .then(res => {
-      console.log(res.data)
+    const res = await API.post('/dialogs/'+this.state.chatId,{input: newMessage})
+    
       if(res.data.response) {
-        res.data.response.map((prompt) => {
+        res.data.response.forEach((prompt) => {
           addResponseMessage(prompt)
         });
+        if(res.data) {
+          document.getElementById("personalBanking").classList.add("cobrowse");
+          document.getElementById("personalBanking").click();
+          await this.timeout(3000);
+          document.getElementById("Accounts").click();
+          await this.timeout(3000);
+          document.getElementById("pad").click()
+          await this.timeout(3000);
+          document.getElementById("Accounts").click()          
+        }
       }
-    })
+ 
   }
   render() {
     return (
@@ -53,7 +65,7 @@ class App extends Component{
         <Switch>         
           <Route exact path='/' component={Home} />
           <Route exact path='/personal/cards' component={Pcards} />
-          <Route exact path='/personal/accounts' component={Paccounts} />
+          <Route path='/personal/accounts' component={Paccounts} />
         </Switch>        
       </div>
     )
