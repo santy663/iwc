@@ -30,12 +30,10 @@ class App extends Component{
   handleNewUserMessage = async(newMessage) => {
     console.log(`New message incoming! ${newMessage}`);
     const res = await API.post('/dialogs/'+this.state.chatId,{input: newMessage})
-    
-      if(res.data.response) {
-        res.data.response.forEach((prompt) => {
-          addResponseMessage(prompt)
-        });
-        if(res.data) {
+      console.log(res.data)
+      if(res.data.slots) {
+        if(res.data.slots.cobrowse_accepted === "YES" && res.data.slots.account_type==="Senior" && !this.navigated) {
+          console.log("in senior")
           document.getElementById("personalBanking").classList.add("cobrowse");
           document.getElementById("personalBanking").click();
           await this.timeout(3000);
@@ -43,8 +41,28 @@ class App extends Component{
           await this.timeout(3000);
           document.getElementById("pad").click()
           await this.timeout(3000);
-          document.getElementById("senior").click()          
+          document.getElementById("senior").click()    
+          this.navigated = true      
         }
+        if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="YES") {
+          document.getElementById("pad").click()
+          await this.timeout(3000);
+          console.log("form to be filled")
+        }
+        if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="NO" && res.data.slots.senior_details_navigation ==="YES") {
+          document.getElementById("accdetails").click()
+          await this.timeout(3000);
+          
+          document.getElementById("senior").click()
+          await this.timeout(3000);
+          console.log("form to be filled")
+        }
+        
+      }
+        if(res.data.response) {
+          res.data.response.forEach((prompt) => {
+            addResponseMessage(prompt)
+          });
       }
  
   }

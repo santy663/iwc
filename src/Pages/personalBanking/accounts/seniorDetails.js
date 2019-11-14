@@ -3,7 +3,7 @@ import React from 'react'
 const SeniorDetails = (props) => (
     <div className="detailsSenior">
         Details of senior Acc
-        <ol className="benifitsSenior">
+        <ol className="benifitsSenior">    
             <li>1.    Door-step Banking to the needy customers with the use of Business Correspondent. </li>
             <li>2.    Free Personalised Cheque book without any restriction.</li>
             <li>3.    Free Internet Banking Enrollment.</li>
