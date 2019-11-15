@@ -8,7 +8,7 @@ const NavDropdown = (props) => (
         <ul className="dropdown">
             <div>
                 {props.items.map((item)=>(
-                    <li className="dropdownText" key = {item} ><Link to={"/"+props.subpath+'/'+item} id ={item}>{item}</Link></li>
+                    <li className="dropdownText" key = {item} onClick={props.Outside}><Link to={"/"+props.subpath+'/'+item} id ={item}>{item}</Link></li>
                     )) 
                 }  
             </div>   
