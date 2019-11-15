@@ -1,10 +1,10 @@
 import React from 'react';
 
 const Paccountssenior = (props) => {
-    const formFields =["NAME","DOB","PHONE","PAN"]
+    const formFields =["NAME","DOB","PHONE","PAN","NOMINEE"]
     return (
         <div>
-                <h1>Please fill in the form to create your Senioraccount</h1>    
+                <h1>Please fill in the form to create your Senior Account</h1>    
                     <form className="seniorForm">
                     { formFields.map((item)=>(
                     <label>
@@ -12,7 +12,7 @@ const Paccountssenior = (props) => {
                         <input type ="text" id={item}></input>
                     </label>
                     ))}
-                    <input type='submit' value='Submit' />                 
+                    <input type='submit' value='Submit' id="seniorsubmit" className="seniorsubmit" />                 
                 </form>
   
                 
