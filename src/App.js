@@ -28,7 +28,6 @@ class App extends Component{
     return new Promise(resolve => setTimeout(resolve, ms));
   }
   handleNewUserMessage = async(newMessage) => {
-    console.log(`New message incoming! ${newMessage}`);
     const res = await API.post('/dialogs/'+this.state.chatId,{input: newMessage})
       console.log(res.data)
       if(res.data.slots) {
@@ -44,8 +43,17 @@ class App extends Component{
           document.getElementById("senior").click()    
           this.navigated = true      
         }
-        if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="YES") {
+        if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="YES" && !res.data.slots.senior_details_navigation) {
+          console.log("form to be filled")
+          document.getElementById("NAME").setAttribute("value", res.data.slots.full_name);
+          document.getElementById("DOB").setAttribute("value", res.data.slots.dob);
+          document.getElementById("PHONE").setAttribute("value", res.data.slots.phone_number);
+          //document.getElementById("DOB").setAttribute("value", res.slots.full_name);
+        }
+        if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="YES" && res.data.slots.senior_details_navigation) {
           document.getElementById("pad").click()
+          await this.timeout(3000);
+          document.getElementById("senior").click()
           await this.timeout(3000);
           console.log("form to be filled")
         }

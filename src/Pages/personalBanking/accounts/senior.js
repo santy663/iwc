@@ -1,10 +1,10 @@
 import React from 'react';
 
 const Paccountssenior = (props) => {
-    const formFields =["NAME","DOM","ADDRESS","PAN"]
+    const formFields =["NAME","DOB","PHONE","PAN"]
     return (
         <div>
-                <h1>Please fill in the form to create account</h1>    
+                <h1>Please fill in the form to create your Senioraccount</h1>    
                     <form className="seniorForm">
                     { formFields.map((item)=>(
                     <label>
