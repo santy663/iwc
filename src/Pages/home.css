@@ -4,3 +4,11 @@
 .page .tab {
     left:500px;
 }
+.home img {
+    height: 712px;
+    width: 1252px;
+    left: -287px;
+}
+.home {
+    display:flex;
+}

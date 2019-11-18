@@ -1,6 +1,8 @@
 .features {
     position:absolute;
     top:600px;
+    text-align:left;
+    margin:34px;
     
 }
 .features .content {
@@ -9,4 +11,30 @@
     position:absolute;
     text-align:left;
     padding-bottom:20px;
+}
+
+.detailsSenior h1 {
+    font-size: 25px !important;
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: initial;
+    color: #ef7c00;
+    left: -153px;
+    position: relative;
+
+    margin: .67em 0;
+}
+
+.detailsSenior h3 {
+    position: relative;
+    left: -791px;
+    font-size: 15px !important;
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: initial;
+    color: #ef7c00;
+}
+.detailsSenior img {
+    height: 532px;
+    position: relative;
+    width: 1649px;
+    right: 223px;
 }

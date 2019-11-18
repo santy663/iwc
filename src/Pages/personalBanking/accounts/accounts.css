@@ -1,19 +1,65 @@
 .listofAccounts {
-    text-align: left;
-    padding:0;
+    list-style: none;
+    padding: 0;    
+    margin: 0;    
+    width: auto;    
+    width: auto;    
+    height: auto;
+    padding-top: 50px;
+    display: flex;
+}
+.seniorAccountCreation h1 {
+    font-size: 25px !important;
+
+    font-family: Arial,Helvetica,sans-serif;
+
+    font-weight: initial;
+
+    color:
+    #ef7c00;
+
+    margin: .67em 0;
+}
+.accCreation {
+    position: absolute;
+
+    top: 280px;
+    
+    left: 575px;
+}
+.buttons {
+    display: flex;
+    left: 546px;
+    position: absolute;
+}
+.seniorAccountCreation h3 {
+    font-size: 18px;
+
+    font-family: Arial,Helvetica,sans-serif;
+    
+    font-weight: initial;
+    
+    color:
+    #ef7c00;
+    
+    margin: 1em 0; 
+}
+.AccountsContainer {
+    padding: 0;
+
+    border-bottom: 1px solid #e0e6eb;
+
+    margin-bottom: -30px;
 }
 .Accounts {
-    border-bottom: 1px solid #ccc;
-    border-top: 1px solid #ccc;
-    border-bottom-color: rgb(204, 204, 204);
-    border-right: 1px solid #ccc;
-    border-right-color: rgb(204, 204, 204);
-    padding: 11px 16px 12px 22px;
-    cursor: pointer;
-    background-color: #f4f4f4;
-    font-weight: bold;
-    width: 200px;
-    height:100%;
+    flex-direction: column;
+    padding: 0;
+    
+    margin: 0;
+    
+    float: none;
+    
+    position: static;
 }
 .detailsSenior {
     position: absolute;
@@ -44,4 +90,10 @@
 
 .seniorForm .seniorsubmit {
     width: 160px;
+}
+.AccountImage {
+    max-width: 1300px;
+    width: 100% !important;
+    top: 17px;
+    position: relative;
 }

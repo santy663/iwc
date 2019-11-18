@@ -1,0 +1,26 @@
+.customButton button {
+    border: 0;
+
+    cursor: pointer;
+
+    color:
+    #fff !important;
+
+    text-decoration: none;
+
+    text-transform: uppercase;
+
+    background:
+    #f5821f;
+
+    text-align: center;
+
+    line-height: 45px;
+
+    height: 45px !important;
+
+    font-size: 13px;
+    width:300px;
+    font-weight: bold;
+    margin: 10px;
+}

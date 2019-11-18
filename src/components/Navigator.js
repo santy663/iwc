@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import Aux from '../HOC/auxilary';
 import {ReactComponent as Logo} from '../Assets/Logo.svg';
+import {Link} from 'react-router-dom';
 import NavDropdown from './NavDropdown';
 import './Navigator.css';
 
@@ -12,9 +13,11 @@ class Navigator extends Component {
         corporate : false,
     }
     render(){
-    return (<Aux ClassName ='tab'>
-        <Logo className='Logo'/>
-        <button className='tabLinks' id="personalBanking"onClick={()=>this.setState({personal : !this.state.personal})}>Personal Banking</button>
+    return (<Aux ClassName ='tab'>        
+        <Link to="/">
+        <Logo className='Logo' />
+        </Link>
+        <button className='tabLinks' id="personalBanking"onClick={()=>this.setState({personal : !this.state.personal})}>Products</button>
         { this.state.personal ? 
                         <NavDropdown className = 'dropdown-personal' 
                         subpath='personal'
@@ -23,16 +26,7 @@ class Navigator extends Component {
                         </NavDropdown>
                         : null
         }
-        <button className='tabLinks' onClick={()=>this.setState({corporate : !this.state.corporate})}>Corporate Banking</button>
-        { this.state.corporate    ?
-                        <NavDropdown className = 'dropdown-corporate'
-                        subpath='corporate' 
-                        items = {this.state.corporateBanking} 
-                        Outside = {()=>this.setState({corporate : !this.state.corporate})}> 
-                        </NavDropdown>
-                        :   null
-
-        }
+        <button className='tabLinks' >Ways to Bank</button>
     </Aux>)
     }
 }

@@ -29,8 +29,8 @@ class App extends Component{
   }
   handleNewUserMessage = async(newMessage) => {
     const res = await API.post('/dialogs/'+this.state.chatId,{input: newMessage})
-      console.log(res.data)
-      if(res.data.slots) {
+
+      if(res.data.slots) { //navigate to senior page
         if(res.data.slots.cobrowse_accepted === "YES" && res.data.slots.account_type==="Senior" && !this.navigated) {
           console.log("in senior")
           document.getElementById("personalBanking").classList.add("cobrowse");
@@ -45,32 +45,31 @@ class App extends Component{
         }
         if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="YES" && !res.data.slots.senior_details_navigation) {
           console.log("form to be filled")
+          document.getElementById("apply").click();
           document.getElementById("NAME").setAttribute("value", res.data.slots.full_name);
           document.getElementById("DOB").setAttribute("value", res.data.slots.dob);
           document.getElementById("PHONE").setAttribute("value", res.data.slots.phone_number);
           //document.getElementById("DOB").setAttribute("value", res.slots.full_name);
         }
         if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="YES" && res.data.slots.senior_details_navigation) {
-          document.getElementById("pad").click()
+          document.getElementById("pad").click();
           await this.timeout(3000);
-          document.getElementById("senior").click()
+          document.getElementById("senior").click();
           await this.timeout(3000);
           console.log("form to be filled")
         }
-        if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="NO" && res.data.slots.senior_details_navigation ==="YES") {
-          document.getElementById("accdetails").click()
+        if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="NO" && res.data.slots.senior_details_navigation ==="YES" && !this.details) {
           await this.timeout(3000);
-          
-          document.getElementById("senior").click()
-          await this.timeout(3000);
-          console.log("form to be filled")
+          document.getElementById("details").click();
+          console.log("form to be filled");
+          this.details =true;
         }
         
       }
-        if(res.data.response) {
-          res.data.response.forEach((prompt) => {
-            addResponseMessage(prompt)
-          });
+      if(res.data.response) {
+        res.data.response.forEach((prompt) => {
+          addResponseMessage(prompt)
+        });
       }
  
   }
