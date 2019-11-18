@@ -6,6 +6,7 @@ import Pcards from './Pages/personalBanking/cards/cards';
 import Paccounts from './Pages/personalBanking/personal';
 import {Widget, addResponseMessage} from 'react-chat-widget';
 import API from './Assets/Axios/api';
+import cursor from './Assets/images/Cursor-icon.png'
 import './App.css';
 import 'react-chat-widget/lib/styles.css';
 class App extends Component{
@@ -27,36 +28,52 @@ class App extends Component{
   timeout = (ms) =>{
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+  //<a href="https://www.freeiconspng.com/img/1127" title="Image from freeiconspng.com"><img src="https://www.freeiconspng.com/uploads/cursor-png-ico-icns-free-icon-download--icon100m-20.png" width="350" alt="Cursor PNG/ICO/ICNS Free Icon Download  icon100m" /></a>
+  //<a href="https://www.freeiconspng.com/img/30506" title="Image from freeiconspng.com"><img src="https://www.freeiconspng.com/uploads/robot-icon-18.png" width="350" alt="Free Svg Robot" /></a>
   handleNewUserMessage = async(newMessage) => {
     const res = await API.post('/dialogs/'+this.state.chatId,{input: newMessage})
-
+    const elem = document.createElement("img");
+        elem.setAttribute("src","https://www.freeiconspng.com/uploads/hand-cursor-clip-art--royalty--14.png");
+        elem.setAttribute("height", "25");
+        elem.setAttribute("width", "25");
+        elem.style.top ="21px";
+        elem.style.right = "40px"
+        elem.style.position = "relative"
+        elem.setAttribute("alt", "Flower");
+    const click = async(id) =>{
+      try {
+        document.getElementById(id).appendChild(elem);
+        await this.timeout(2000);
+        document.getElementById(id).click()
+        document.getElementById(id).removeChild(elem);
+        await this.timeout(2000);
+      } catch (e){
+        console.log(e)
+      }
+    }
       if(res.data.slots) { //navigate to senior page
         if(res.data.slots.cobrowse_accepted === "YES" && res.data.slots.account_type==="Senior" && !this.navigated) {
           console.log("in senior")
-          document.getElementById("personalBanking").classList.add("cobrowse");
-          document.getElementById("personalBanking").click();
-          await this.timeout(3000);
-          document.getElementById("Accounts").click();
-          await this.timeout(3000);
-          document.getElementById("pad").click()
-          await this.timeout(3000);
-          document.getElementById("senior").click()    
+          await click ("personalBanking");
+          await click ("Accounts");
+          await click ("pad");
+          await click ("senior");  
           this.navigated = true      
         }
-        if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="YES" && !res.data.slots.senior_details_navigation) {
+        if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="YES" && !res.data.slots.senior_details_navigation && !this.filled) {
           console.log("form to be filled")
+          await this.timeout(3000);
           document.getElementById("apply").click();
           document.getElementById("NAME").setAttribute("value", res.data.slots.full_name);
           document.getElementById("DOB").setAttribute("value", res.data.slots.dob);
           document.getElementById("PHONE").setAttribute("value", res.data.slots.phone_number);
-          //document.getElementById("DOB").setAttribute("value", res.slots.full_name);
+          this.filled = true;
         }
         if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="YES" && res.data.slots.senior_details_navigation) {
           document.getElementById("pad").click();
           await this.timeout(3000);
           document.getElementById("senior").click();
           await this.timeout(3000);
-          console.log("form to be filled")
         }
         if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="NO" && res.data.slots.senior_details_navigation ==="YES" && !this.details) {
           await this.timeout(3000);
