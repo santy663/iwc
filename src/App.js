@@ -6,7 +6,6 @@ import Pcards from './Pages/personalBanking/cards/cards';
 import Paccounts from './Pages/personalBanking/personal';
 import {Widget, addResponseMessage} from 'react-chat-widget';
 import API from './Assets/Axios/api';
-import cursor from './Assets/images/Cursor-icon.png'
 import './App.css';
 import 'react-chat-widget/lib/styles.css';
 class App extends Component{
@@ -40,6 +39,7 @@ class App extends Component{
         elem.style.right = "40px"
         elem.style.position = "relative"
         elem.setAttribute("alt", "Flower");
+      console.log(res.data)
     const click = async(id) =>{
       try {
         document.getElementById(id).appendChild(elem);
@@ -51,9 +51,16 @@ class App extends Component{
         console.log(e)
       }
     }
+    const inputEntry = async(id,value) =>{
+      let elem = document.getElementById(id)
+      elem.classList.add("active-input");      
+      await this.timeout(2000);
+      elem.setAttribute("value",value);
+      await this.timeout(2000);
+      elem.classList.remove("active-input")
+    }
       if(res.data.slots) { //navigate to senior page
         if(res.data.slots.cobrowse_accepted === "YES" && res.data.slots.account_type==="Senior" && !this.navigated) {
-          console.log("in senior")
           await click ("personalBanking");
           await click ("Accounts");
           await click ("pad");
@@ -61,25 +68,28 @@ class App extends Component{
           this.navigated = true      
         }
         if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="YES" && !res.data.slots.senior_details_navigation && !this.filled) {
-          console.log("form to be filled")
-          await this.timeout(3000);
-          document.getElementById("apply").click();
-          document.getElementById("NAME").setAttribute("value", res.data.slots.full_name);
-          document.getElementById("DOB").setAttribute("value", res.data.slots.dob);
-          document.getElementById("PHONE").setAttribute("value", res.data.slots.phone_number);
+          await click ("apply");
+          await inputEntry("NAME",res.data.slots.full_name);
+          await inputEntry("DOB",res.data.slots.dob);
+          await inputEntry("PHONE",res.data.slots.phone_number);
           this.filled = true;
         }
         if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="YES" && res.data.slots.senior_details_navigation) {
-          document.getElementById("pad").click();
-          await this.timeout(3000);
-          document.getElementById("senior").click();
-          await this.timeout(3000);
+          await click ("pad");
+          await click ("senior");
         }
         if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="NO" && res.data.slots.senior_details_navigation ==="YES" && !this.details) {
-          await this.timeout(3000);
-          document.getElementById("details").click();
-          console.log("form to be filled");
+          await click ("details");
           this.details =true;
+        }
+        if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="YES" && res.data.slots.senior_details_navigation ==="YES" && this.details && !this.filled) {
+          await click ("pad");
+          await click ("senior");
+          await click ("apply");
+          await inputEntry("NAME",res.data.slots.full_name);
+          await inputEntry("DOB",res.data.slots.dob);
+          await inputEntry("PHONE",res.data.slots.phone_number);
+          this.filled = true;
         }
         
       }
