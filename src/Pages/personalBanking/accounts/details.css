@@ -12,6 +12,15 @@
     text-align:left;
     padding-bottom:20px;
 }
+.detailsSenior .fees {
+    position: absolute;
+    top: 982px;
+    text-align: left;
+    margin: 34px;
+}
+.detailsSenior .fees h3 {
+    left:0 !important;
+}
 
 .detailsSenior h1 {
     font-size: 25px !important;

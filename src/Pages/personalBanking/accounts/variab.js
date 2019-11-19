@@ -9,4 +9,38 @@ export const feature = ["Free Rewards International Debit Card free for the firs
 "Free Cash transactions with a maximum limit of Rs.25,000 per day",
 "Doorstep Banking services i.e Cash Pickup / Instrument Pickup and Cash Delivery available on call for Senior citizens"]
 
-export const fees = []
+export const fees = [   "Available: All cities",
+                        "Eligibility : Indian resident > 60 yrs of age",
+                        "Minimum monthly average balance (MAB)* : Rs.4500",
+                        "Charges for non maintenance of minimum monthly average balance (NMMAB) : 5% of the shortfall in required MAB or Rs. 100 whichever is lower",
+                        "Cash transactions (deposits and withdrawals) at base branch i.e all branches/ Cash Recycler Machine (cash deposits) in the same city : nill"
+]
+export const details = [
+                            "enter your name",
+                            "enter your DOB in yyyy-mm-dd format",
+                            "Enter your phone number",
+                            "Enter your PAN number",
+                            "enter details of nominee"
+]
+
+	
+
+    
+    
+    
+        
+    
+    
+    
+    
+        
+    
+    
+    
+    
+        
+    
+     
+    
+    
+

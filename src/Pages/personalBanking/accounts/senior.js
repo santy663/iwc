@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
 import CustomButton from '../../../components/customButton'
+import details from './variab'
+import Info from '../../../components/info'
 import {withRouter} from 'react-router-dom'
 class Paccountssenior extends Component {
     state ={
@@ -30,9 +32,10 @@ class Paccountssenior extends Component {
                 <div className="accCreation">
                         <h1>Please fill in the form to create your Senior Account</h1>    
                             <form className="seniorForm">
-                            {this.state.formFields.map((item)=>(
+                            {this.state.formFields.map((item,idx)=>(
                             <label>
-                                {item}:
+                                {/* {item} <Info index ={idx} /> : */}
+                                {item} :
                                 <input type ="text" id={item}></input>
                             </label>
                             ))}

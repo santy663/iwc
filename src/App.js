@@ -43,13 +43,21 @@ class App extends Component{
     const click = async(id) =>{
       try {
         document.getElementById(id).appendChild(elem);
+        await scrollandhighlight(document.getElementById(id));
         await this.timeout(2000);
-        document.getElementById(id).click()
+        document.getElementById(id).click();
         document.getElementById(id).removeChild(elem);
         await this.timeout(2000);
       } catch (e){
         console.log(e)
       }
+    }
+    const scrollandhighlight = async(elem) => {
+        elem.scrollIntoView();
+        elem.style.border = "5px solid red"
+        await this.timeout(1000);
+        elem.style.border = "none"
+
     }
     const inputEntry = async(id,value) =>{
       let elem = document.getElementById(id)
@@ -70,7 +78,8 @@ class App extends Component{
         if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="YES" && !res.data.slots.senior_details_navigation && !this.filled) {
           await click ("apply");
           await inputEntry("NAME",res.data.slots.full_name);
-          await inputEntry("DOB",res.data.slots.dob);
+          let bday = res.data.slots.dob.split(" ")
+          await inputEntry("DOB",bday[0]);
           await inputEntry("PHONE",res.data.slots.phone_number);
           this.filled = true;
         }
@@ -90,6 +99,10 @@ class App extends Component{
           await inputEntry("DOB",res.data.slots.dob);
           await inputEntry("PHONE",res.data.slots.phone_number);
           this.filled = true;
+        }
+        if(res.data.slots.fees_and_charges ==="true" && !this.feenavigator) {
+          await scrollandhighlight (document.getElementById("fees"));
+          this.feenavigator = true
         }
         
       }
