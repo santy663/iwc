@@ -15,6 +15,9 @@ class Paccountssenior extends Component {
     showDetails = () =>{
         this.props.history.replace("/personal/Accounts/details/senior")
     }
+    submit =() => {
+        alert("Request submitted successfully")
+    }
 
     render () {
         return (
@@ -39,7 +42,7 @@ class Paccountssenior extends Component {
                                 <input type ="text" id={item}></input>
                             </label>
                             ))}
-                            <CustomButton>Submit</CustomButton>         
+                            <CustomButton click={this.submit}>Submit</CustomButton>         
                         </form> 
                         
                 </div>

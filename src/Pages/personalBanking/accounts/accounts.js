@@ -8,8 +8,9 @@ const Paccountsdetails = (props) => {
             <img src ={Accounts} alt ="Account" className="AccountImage"/>
             <ul className="listofAccounts">
                 <li className="Accounts">Savings</li>
+                <li className="Accounts" key = "1Accountpersonal" ><Link to={"/personal/Accounts/senior"} id="senior">Senior</Link></li>   
                 <li className="Accounts">Student</li>
-                <li className="Accounts" key = "1Accountpersonal" ><Link to={"/personal/Accounts/senior"} id="senior">Senior</Link></li>                
+                             
             </ul>           
         </div>
     )

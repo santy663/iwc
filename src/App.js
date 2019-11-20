@@ -75,7 +75,6 @@ class App extends Component{
           await click ("senior");  
           this.navigated = true      
         }
-        //
         if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="YES" && !res.data.slots.senior_details_navigation && !this.filled) {
           await click ("apply");
           await inputEntry("NAME",res.data.slots.full_name);
@@ -84,10 +83,11 @@ class App extends Component{
           await inputEntry("PHONE",res.data.slots.phone_number);
           this.filled = true;
         }
-        if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="YES" && res.data.slots.senior_details_navigation) {
-          await click ("pad");
-          await click ("senior");
-        }
+        // if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="YES" && res.data.slots.senior_details_navigation && !this.seniornavi) {
+        //   await click ("pad");
+        //   await click ("senior");
+        //   this.seniornavi = true;
+        // }
         if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="NO" && res.data.slots.senior_details_navigation ==="YES" && !this.details) {
           await click ("details");
           this.details =true;
@@ -97,7 +97,8 @@ class App extends Component{
           await click ("senior");
           await click ("apply");
           await inputEntry("NAME",res.data.slots.full_name);
-          await inputEntry("DOB",res.data.slots.dob);
+          let bday = res.data.slots.dob.split(" ")
+          await inputEntry("DOB",bday[0]);
           await inputEntry("PHONE",res.data.slots.phone_number);
           this.filled = true;
         }
