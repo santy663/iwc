@@ -75,6 +75,7 @@ class App extends Component{
           await click ("senior");  
           this.navigated = true      
         }
+        //
         if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="YES" && !res.data.slots.senior_details_navigation && !this.filled) {
           await click ("apply");
           await inputEntry("NAME",res.data.slots.full_name);
