@@ -6,6 +6,7 @@ import Pcards from './Pages/personalBanking/cards/cards';
 import Paccounts from './Pages/personalBanking/personal';
 import {Widget, addResponseMessage} from 'react-chat-widget';
 import API from './Assets/Axios/api';
+import CobrowseAPI from './Assets/Axios/cobrowse';
 import './App.css';
 import 'react-chat-widget/lib/styles.css';
 class App extends Component{
@@ -43,20 +44,27 @@ class App extends Component{
     const click = async(id) =>{
       try {
         document.getElementById(id).appendChild(elem);
-        await scrollandhighlight(document.getElementById(id));
+        await scrollandhighlight(id);
         await this.timeout(2000);
         document.getElementById(id).click();
+        await this.timeout(1000);
         document.getElementById(id).removeChild(elem);
         await this.timeout(2000);
       } catch (e){
         console.log(e)
       }
     }
-    const scrollandhighlight = async(elem) => {
-        elem.scrollIntoView();
-        elem.style.border = "5px solid red"
+    const scrollandhighlight = async(id) => {
+      try {
+        const elem1 = document.getElementById(id);
+        elem1.scrollIntoView();
+        elem1.style.border = "5px solid red";
         await this.timeout(1000);
-        elem.style.border = "none"
+        elem1.style.border = "none";
+
+      } catch (e){
+        console.log(e)
+      }
 
     }
     const inputEntry = async(id,value) =>{
@@ -66,51 +74,37 @@ class App extends Component{
       elem.setAttribute("value",value);
       await this.timeout(2000);
       elem.classList.remove("active-input")
-    }
-      if(res.data.slots) { //navigate to senior page
-        if(res.data.slots.cobrowse_accepted === "YES" && res.data.slots.account_type==="Senior" && !this.navigated) {
-          await click ("personalBanking");
-          await click ("Accounts");
-          await click ("pad");
-          await click ("senior");  
-          this.navigated = true      
-        }
-        if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="YES" && !res.data.slots.senior_details_navigation && !this.filled) {
-          await click ("apply");
-          await inputEntry("NAME",res.data.slots.full_name);
-          let bday = res.data.slots.dob.split(" ")
-          await inputEntry("DOB",bday[0]);
-          await inputEntry("PHONE",res.data.slots.phone_number);
-          this.filled = true;
-        }
-        // if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="YES" && res.data.slots.senior_details_navigation && !this.seniornavi) {
-        //   await click ("pad");
-        //   await click ("senior");
-        //   this.seniornavi = true;
-        // }
-        if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="NO" && res.data.slots.senior_details_navigation ==="YES" && !this.details) {
-          await click ("details");
-          this.details =true;
-        }
-        if(res.data.slots.cobrowse_accepted ==="YES" && res.data.slots.create_account==="YES" && res.data.slots.senior_details_navigation ==="YES" && this.details && !this.filled) {
-          await click ("pad");
-          await click ("senior");
-          await click ("apply");
-          await inputEntry("NAME",res.data.slots.full_name);
-          let bday = res.data.slots.dob.split(" ")
-          await inputEntry("DOB",bday[0]);
-          await inputEntry("PHONE",res.data.slots.phone_number);
-          this.filled = true;
-        }
-        if(res.data.slots.fees_and_charges ==="true" && !this.feenavigator) {
-          await scrollandhighlight (document.getElementById("fees"));
-          this.feenavigator = true
-        }
-        
+    }    
+      if(Object.keys(res.data.actions).length) { //navigate to senior page
+        const cobrowseInit = await CobrowseAPI.post('/intents',res.data.actions)
+        if(cobrowseInit.data) {
+          for(var i=0;i<cobrowseInit.data.length;i++) {
+            if(Object.keys(cobrowseInit.data[i])[0]==="click") {
+              await click (cobrowseInit.data[i].click)
+            }
+            else if(Object.keys(cobrowseInit.data[i])[0]==="inputEntry") {
+              let val = cobrowseInit.data[i].inputEntry[1]
+              if (res.data.slots.dob) {
+                let bday = res.data.slots.dob.split(" ")
+                res.data.slots.dob = bday[0]
+              }
+              await inputEntry (cobrowseInit.data[i].inputEntry[0],res.data.slots[val])
+            }
+            else if(Object.keys(cobrowseInit.data[i][0]==="scrollandhighlight")) {
+              console.log(cobrowseInit.data[i])
+              await scrollandhighlight (cobrowseInit.data[i].scrollandhighlight)
+            }
+          }
+
+        }        
       }
       if(res.data.response) {
         res.data.response.forEach((prompt) => {
           addResponseMessage(prompt)
+          if(prompt ==="Now I have all the information required.I can help you with opening a Senior account through a cobrowse session.Do you want to accept it?") {
+          addResponseMessage(<button>"hi"</button>)
+          }
+          
         });
       }
  
