@@ -100,11 +100,7 @@ class App extends Component{
       }
       if(res.data.response) {
         res.data.response.forEach((prompt) => {
-          addResponseMessage(prompt)
-          if(prompt ==="Now I have all the information required.I can help you with opening a Senior account through a cobrowse session.Do you want to accept it?") {
-          addResponseMessage(<button>"hi"</button>)
-          }
-          
+          addResponseMessage(prompt)          
         });
       }
  
