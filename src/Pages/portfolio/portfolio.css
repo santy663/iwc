@@ -1,0 +1,31 @@
+.Portfolio {
+    width: 1000px;
+    position: relative;
+}
+.Total {
+    position: absolute;
+    display:flex;
+}
+.updatePortfolio {
+    position: relative;
+    top: 30px;
+    left: 418px;
+    background: #f5821f;
+    border:#f5821f;
+}
+.updatePortfolio:hover {
+    background: #f5821f;
+    border:#f5821f;
+}
+.updatePortfolio:active {
+    background-color: #f5821f !important;
+    border:#f5821f;
+}
+.overview {
+    left: -400px;
+    position: absolute;
+}
+.submit {
+    top: 1058px;
+    position: absolute;
+}

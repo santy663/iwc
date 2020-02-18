@@ -76,12 +76,18 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    position: absolute;
+    left:200px;
 }
+
 .seniorForm {
     text-align: left;
     display: flex;
     flex-direction: column;
     padding-left:20px;
+}
+.seniorFields {
+    display: flex;
 }
 .benifitsSenior {
     text-align: left;

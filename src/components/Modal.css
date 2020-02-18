@@ -1,0 +1,14 @@
+.addotherStocks {
+    position: absolute;
+    left: 465px;
+    top: 12px;
+    background: #f5821f;
+    border:#f5821f;
+}
+.addotherStocks:hover {
+    background: #f5821f;
+    border:#f5821f;
+}
+.controllers {
+    cursor:pointer;
+}
