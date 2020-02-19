@@ -25,11 +25,11 @@
 
     top: 280px;
     
-    left: 575px;
+    left: 500px;
 }
 .buttons {
     display: flex;
-    left: 546px;
+    left: 475px;
     position: absolute;
 }
 .seniorAccountCreation h3 {
