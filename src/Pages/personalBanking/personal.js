@@ -15,7 +15,8 @@ const Paccounts =(props) => {
         </div>
         <Route path="/personal/Accounts/pad" component={Paccountscreation} />
         <Route path="/personal/Accounts/details" component={Paccountsdetails} />
-        <Route path="/personal/Accounts/senior" component={Paccountssenior} />
+        <Route path="/personal/Accounts/senior" 
+        render={(props1) => <Paccountssenior {...props1} restore={props.restore} />} />
     </div> )
 }
 export default withRouter(Paccounts)

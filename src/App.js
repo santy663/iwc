@@ -12,6 +12,7 @@ import 'react-chat-widget/lib/styles.css';
 class App extends Component{
   state = {
     chatId: null,
+    restore: false
   }
   chatLauncher= (toggler) => {
     if (!this.state.chatId) {
@@ -40,7 +41,10 @@ class App extends Component{
         elem.style.right = "40px"
         elem.style.position = "relative"
         elem.setAttribute("alt", "Flower");
-      console.log(res.data)
+      if(res.data.actions.continue_prev_session === "YES") {
+        console.log("setting restore")
+        this.setState({restore:true})
+      }
     const click = async(id) =>{
       try {
         document.getElementById(id).appendChild(elem);
@@ -122,7 +126,16 @@ class App extends Component{
         <Switch>         
           <Route exact path='/' component={Home} />
           <Route exact path='/personal/cards' component={Pcards} />
-          <Route path='/personal/accounts' component={Paccounts} />
+          
+          {this.state.restore 
+          ? <Route 
+            path='/personal/accounts' 
+            render={(props) => <Paccounts {...props} restore={true} />}/>
+          :
+          <Route path='/personal/accounts' 
+          render={(props) => <Paccounts {...props} restore={false} />}/>
+          }
+          
         </Switch>        
       </div>
     )

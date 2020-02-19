@@ -48,6 +48,9 @@ class Portfolio extends Component {
           this.setState({stocks:response.data["-Lu6DxbeWSyb6e0NNdSj"].stocks,listOfStocks:response.data["-Lu6DxbeWSyb6e0NNdSj"].listOfStocks})
         })
       }
+      if(this.props.restore) {
+        this.restore();
+      }
     }
     reset =() =>{
       Axios.delete('/submit/-Lu6DxbeWSyb6e0NNdSj/stocks/4/.json')
@@ -157,8 +160,8 @@ class Portfolio extends Component {
                   <TableCell align="right">{row.Symbol}</TableCell>
                   <TableCell align="right">{row.Price}</TableCell>
                   <TableCell align="right">{row.Quantity}</TableCell>
-                  <TableCell align="right"><div className="controllers" name="add"  onClick={this.deleteStock.bind(this,row.id)}>+</div></TableCell>
-                  <TableCell align="right"><div className="controllers" name="sub" click={this.deleteStock.bind(this,row.id)}>-</div></TableCell>
+                  <TableCell align="right"><div className="controllers" name="add"  onClick={this.addStock.bind(this,row.id)}>+</div></TableCell>
+                  <TableCell align="right"><div className="controllers" name="sub" onClick={this.deleteStock.bind(this,row.id)}>-</div></TableCell>
                 </TableRow>
               ))}
             </TableBody>

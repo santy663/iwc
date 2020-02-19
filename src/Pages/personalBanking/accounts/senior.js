@@ -3,11 +3,18 @@ import CustomButton from '../../../components/customButton';
 import {withRouter} from 'react-router-dom';
 import Portfolio from '../../portfolio/portfolio';
 class Paccountssenior extends Component {
+
     state ={
         formFields :["NAME","DOB","PHONE","PAN","NOMINEE","Age","Occupation","Annual income","Tax payable per year","Nominee"],
         showForm : false,
         showMf : false,
         selectedOption: "no"
+    }
+    componentDidMount() {
+            if(this.props.restore) {
+
+                this.setState({showMf:true,showForm:true})
+            }
     }
     showFormscreen = () =>{
         this.setState({showForm:true})
@@ -73,7 +80,7 @@ class Paccountssenior extends Component {
                                 </div>
                                 {this.state.showMf ?                        
                                     <div>
-                                        <Portfolio seniorState={this.state}></Portfolio>
+                                        <Portfolio seniorState={this.state} restore ={this.props.restore} ></Portfolio>
                                     </div>
                                     : null
                                 }
