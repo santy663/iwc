@@ -11,9 +11,9 @@ const Paccounts =(props) => {
         <div className ='tab'>
             <li className="tabLinks" key = "1Accountpersonal" ><Link to={"/personal/Accounts/pad"} id="pad">Accounts</Link></li>            
             <li className="tabLinks" key = "1AccountDeposit" ><Link to={"/personal/Accounts/details"} id="accdetails">Details</Link></li>     
-            
+            {/* <Paccountscreation /> */}
         </div>
-        <Route path="/personal/Accounts/pad" component={Paccountscreation} />
+        <Route exact path="/personal/Accounts/" component={Paccountscreation} />
         <Route path="/personal/Accounts/details" component={Paccountsdetails} />
         <Route path="/personal/Accounts/senior" 
         render={(props1) => <Paccountssenior {...props1} restore={props.restore} />} />
