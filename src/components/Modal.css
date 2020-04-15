@@ -9,6 +9,20 @@
     background: #f5821f;
     border:#f5821f;
 }
-.controllers {
+.controllers{
     cursor:pointer;
+}
+.cursor {
+    width: 100px;
+    margin: 5px;
+    background: #f5821f;
+    border:#f5821f;
+}
+.cursor:active,
+.cursor:focus,
+.cursor:hover {
+color: #fff;
+background-color: #c46f24 !important;
+border-color: #c46f24 !important;
+box-shadow:  0 0 0.2rem #c46f24 !important;
 }

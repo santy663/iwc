@@ -13,7 +13,7 @@ function MydModalWithGrid(props) {
           <Container>
             <Row className="show-grid">
               <Col xs={6} md={4}>
-               <span onClick = {props.addingShare.bind(null,4)}>Apple</span>
+               <Button className ="cursor" onClick = {props.addingShare.bind(null,4)}>Apple</Button>
               </Col>
               <Col xs={6} md={4}>
                 <code>APPL</code>
@@ -25,7 +25,7 @@ function MydModalWithGrid(props) {
   
             <Row className="show-grid">
               <Col xs={6} md={4}>
-              <span onClick = {props.addingShare.bind(null,5)}>Genesys</span>
+              <Button className ="cursor" onClick = {props.addingShare.bind(null,5)}>Genesys</Button>
               </Col>
               <Col xs={6} md={4}>
                 <code>GEN</code>
@@ -34,7 +34,7 @@ function MydModalWithGrid(props) {
                 <code>15$</code>
               </Col>
               <Col xs={6} md={4}>
-              <span onClick = {props.addingShare.bind(null,6)}>Alphabet</span>
+              <Button className ="cursor" onClick = {props.addingShare.bind(null,6)}>Alphabet</Button>
               </Col>
               <Col xs={6} md={4}>
                 <code>Alp</code>
